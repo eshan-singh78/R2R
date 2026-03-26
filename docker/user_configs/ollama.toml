@@ -1,0 +1,37 @@
+[app]
+fast_llm = "ollama/qwen2.5:3b-instruct"
+quality_llm = "ollama/qwen2.5:3b-instruct"
+vlm = "ollama/phi3:mini-128k"
+audio_lm = "ollama/phi3:mini-128k"
+
+[embedding]
+provider = "ollama"
+base_model = "nomic-embed-text"
+base_dimension = 768
+batch_size = 128
+add_title_as_prefix = true
+concurrent_request_limit = 2
+
+[completion_embedding]
+provider = "ollama"
+base_model = "nomic-embed-text"
+base_dimension = 768
+batch_size = 128
+add_title_as_prefix = true
+concurrent_request_limit = 2
+
+[agent]
+tools = ["local_search"]
+
+[agent.generation_config]
+model = "ollama/qwen2.5:3b-instruct"
+
+[completion]
+provider = "litellm"
+concurrent_request_limit = 1
+
+[completion.generation_config]
+temperature = 0.1
+top_p = 1
+max_tokens_to_sample = 1_024
+stream = false
